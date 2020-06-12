@@ -1,0 +1,8 @@
+*.tfvars
+*.tfstate*
+.terraform/
+**/inspec.lock
+*.gem
+terraform.tfstate.d/
+.idea/
+*.iml
