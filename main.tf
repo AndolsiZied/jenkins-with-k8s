@@ -74,6 +74,12 @@ resource "local_file" "kube_config" {
 
 resource "helm_release" "jenkins" {
  	 name  = "jenkins"
-         repository = "https://charts.bitnami.com/bitnami"
+         repository = "https://kubernetes-charts.storage.googleapis.com/"
   	 chart = "jenkins"
+         version = "2.1.0"
+	
+	 set {
+   		 name  = "master.serviceType"
+    		 value = "LoadBalancer"
+  	 }
 }
