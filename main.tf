@@ -30,7 +30,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "2.6.0"
 
-  name                 = "test-vpc-spot"
+  name                 = "eks-vpc-spot"
   cidr                 = "10.0.0.0/16"
   azs                  = data.aws_availability_zones.available.names
   public_subnets       = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
@@ -42,16 +42,22 @@ module "eks" {
   cluster_name = local.cluster_name
   subnets      = module.vpc.public_subnets
   vpc_id       = module.vpc.vpc_id
-
-  worker_groups_launch_template = [
+  
+  worker_groups = [
     {
-      name                    = "spot-1"
-      override_instance_types = ["m5.large", "m5a.large", "m5d.large", "m5ad.large"]
-      spot_instance_pools     = 4
-      asg_max_size            = 5
-      asg_desired_capacity    = 5
-      kubelet_extra_args      = "--node-labels=node.kubernetes.io/lifecycle=spot"
-      public_ip               = true
+      name                = "on-demand-1"
+      instance_type       = "t2.micro"
+      asg_max_size        = 1
+      kubelet_extra_args  = "--node-labels=node.kubernetes.io/lifecycle=normal"
+      suspended_processes = ["AZRebalance"]
     },
+    {
+      name                = "spot-1"
+      spot_price          = "0.0045"
+      instance_type       = "t2.micro"
+      asg_max_size        = 1
+      kubelet_extra_args  = "--node-labels=node.kubernetes.io/lifecycle=spot"
+      suspended_processes = ["AZRebalance"]
+    }
   ]
 }
