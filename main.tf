@@ -72,6 +72,10 @@ resource "local_file" "kube_config" {
 }
 
 
+variable "plugins" { default = [
+  "role-strategy:3.0"
+]}
+
 resource "helm_release" "jenkins" {
  	 name  = "jenkins"
          repository = "https://kubernetes-charts.storage.googleapis.com/"
@@ -82,4 +86,20 @@ resource "helm_release" "jenkins" {
    		 name  = "master.serviceType"
     		 value = "LoadBalancer"
   	 }
+
+	 set {
+		 name  = "master.additionalPlugins"
+		 value = "{${join(",", var.plugins)}}"
+	 }
+
+	 set {
+		 name  = "master.JCasC.configScripts.securityrealm"
+		 value = file("jenkins-securityrealm.yaml")
+         }
+
+	
+         set {
+                 name  = "master.JCasC.configScripts.authorizationstrategy"
+                 value = file("jenkins-authorizationstrategy.yaml")
+         }
 }
