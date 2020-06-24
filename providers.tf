@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 provider "helm" {
- 	 kubernetes {
-    		config_path = "kubeconfig.yaml"
-  	 }
+         kubernetes {
+                config_path = "kubeconfig.yaml"
+         }
 }

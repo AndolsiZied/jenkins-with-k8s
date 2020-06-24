@@ -6,6 +6,7 @@ jenkins:
       users:
       - id: "admin"
         name: "admin"
+        password: "${admin}"
         properties:
         - preferredProvider:
             providerId: "default"
@@ -13,17 +14,9 @@ jenkins:
             emailAddress: "admin@jenkins.com"
       - id: "candidat-x"
         name: "candidat-x"
-        password: "candidat-x"
+        password: "${candidat}"
         properties:
         - preferredProvider:
             providerId: "default"
         - mailer:
             emailAddress: "candidat-x@jenkins.com"
-      - id: "candidat-y"
-        name: "candidat-y"
-        password: "candidat-y"
-        properties:
-        - preferredProvider:
-            providerId: "default"
-        - mailer:
-            emailAddress: "candidat-y@jenkins.com"

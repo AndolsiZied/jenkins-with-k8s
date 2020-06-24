@@ -1,0 +1,15 @@
+jenkins:
+  authorizationStrategy:
+    projectMatrix:
+      permissions:
+      - "Job/Build:authenticated"
+      - "Job/Cancel:authenticated"
+      - "Job/Configure:authenticated"
+      - "Job/Create:authenticated"
+      - "Job/Delete:authenticated"
+      - "Job/Discover:authenticated"
+      - "Job/Move:authenticated"
+      - "Job/Read:authenticated"
+      - "Job/Workspace:authenticated"
+      - "Overall/Administer:admin"
+      - "Overall/Read:authenticated"
