@@ -22,3 +22,8 @@ output "passwords" {
   description = "users' password"
   value	      = module.jenkins.passwords
 }
+
+output "lb_dns_name" {
+  value	     = module.jenkins.jenkins_svc
+}
+

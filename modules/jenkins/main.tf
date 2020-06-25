@@ -37,6 +37,11 @@ resource "helm_release" "jenkins" {
   	 }
 
 	 set {
+		 name  = "master.servicePort"
+		 value = "80"
+         } 
+
+	 set {
 		 name  = "master.additionalPlugins"
 		 value = "{${join(",", var.plugins)}}"
 	 }
@@ -53,3 +58,9 @@ resource "helm_release" "jenkins" {
          }
 }
 
+data "kubernetes_service" "jenkins" {
+  metadata {
+    name = "jenkins"
+  }
+  depends_on = [helm_release.jenkins]
+}
