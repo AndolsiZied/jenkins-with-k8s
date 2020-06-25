@@ -6,4 +6,4 @@
 terraform.tfstate.d/
 .idea/
 *.iml
-kubeconfig_*
+kubeconfig*
