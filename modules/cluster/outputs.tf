@@ -17,9 +17,3 @@ output "config_map_aws_auth" {
   description = "A kubernetes configuration to authenticate to this EKS cluster."
   value       = module.eks.config_map_aws_auth
 }
-
-output "lb_dns_name" {
-  value = module.alb.this_lb_dns_name
-}
-
-
