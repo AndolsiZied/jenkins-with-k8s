@@ -1,5 +1,9 @@
 variable "region" {
 	description = "AWS region"
 	type	    = string
-	default     = "eu-west-2"
+}
+
+variable "namespace" {
+        description = "Used to group resources"
+        type        = string
 }
