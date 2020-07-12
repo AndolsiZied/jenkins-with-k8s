@@ -1,0 +1,12 @@
+master:
+ serviceType: "LoadBalancer"
+ servicePort: 80
+ additionalPlugins:
+ - "role-strategy:3.0" 
+ nodeSelector:
+  node.kubernetes.io/lifecycle: "normal"
+
+agent:
+ nodeSelector:
+  node.kubernetes.io/lifecycle: "spot"
+ 

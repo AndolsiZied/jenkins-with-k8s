@@ -30,15 +30,15 @@ module "eks" {
   worker_groups = [
     {
       name                = "on-demand-1"
-      instance_type       = "t2.micro"
+      instance_type       = "t2.medium"
       asg_max_size        = 1
       kubelet_extra_args  = "--node-labels=node.kubernetes.io/lifecycle=normal"
       suspended_processes = ["AZRebalance"]
     },
     {
       name                = "spot-1"
-      spot_price          = "0.0045"
-      instance_type       = "t2.micro"
+      spot_price          = "0.015"
+      instance_type       = "t2.medium"
       asg_max_size        = 1
       kubelet_extra_args  = "--node-labels=node.kubernetes.io/lifecycle=spot"
       suspended_processes = ["AZRebalance"]
