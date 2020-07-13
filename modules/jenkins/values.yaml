@@ -2,7 +2,8 @@ master:
  serviceType: "LoadBalancer"
  servicePort: 80
  additionalPlugins:
- - "role-strategy:3.0" 
+ - "role-strategy:3.0"
+ - "pipeline-aws:1.41"
  nodeSelector:
   node.kubernetes.io/lifecycle: "normal"
 

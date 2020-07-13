@@ -37,7 +37,7 @@ module "eks" {
     },
     {
       name                = "spot-1"
-      spot_price          = "0.015"
+      spot_price          = "0.016"
       instance_type       = "t2.medium"
       asg_max_size        = 1
       kubelet_extra_args  = "--node-labels=node.kubernetes.io/lifecycle=spot"
